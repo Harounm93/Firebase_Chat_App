@@ -1,28 +1,24 @@
 import './App.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import SignIn from '../SignIn/index'
-import SignOut from '../SignOut/index'
-
-
-
-// const auth = firebase.auth();
-// const firestore = firebase.firestore();
-// const analytics = firebase.analytics();
-
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import SignUp from "../../components/SignUp/index"
+import { useState } from 'react';
+import auth from "../Firebase/firebase"
 
 function App() {
+  const [email, setEmail] = useState("")
+  const [user, setUser] = useState("")
+  const [password, setPassword] = useState("")
 
-  // const [user] = useAuthState(auth);
+
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Chat App</h1>
-         {/* <SignOut/> 
-
-          <SignIn/>  */}
-        
-      </header>
+        <SignUp/>
+        </header>
     </div>
   );
 }
