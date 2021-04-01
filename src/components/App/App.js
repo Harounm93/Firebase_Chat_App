@@ -88,7 +88,7 @@ authListener()
   return (
     <div className='App'>
       {user ? (
-        <Hero handleLogOut = {handleLogOut}/>
+        <Hero handleLogOut = {handleLogOut} user = {user}/>
       ):(
         
         <Login email = {email} setEmail = {setEmail} password = {password} setPassword = {setPassword} handleLogin = {handleLogin}
