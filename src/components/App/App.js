@@ -6,6 +6,7 @@ import SignUp from '../../components/SignUp/index';
 import { useEffect, useState } from 'react';
 import fire from '../Firebase/firebase';
 import Login from "../../components/Input/index"
+import Hero from "../../components/Hero/index"
 
 function App() {
   const [email, setEmail] = useState('');
@@ -86,13 +87,15 @@ authListener()
 },[])
   return (
     <div className='App'>
-      
+      {user? (
+        <Hero handleLogOut = {handleLogOut}/>
+      ):(
         
         <Login email = {email} setEmail = {setEmail} password = {password} setPassword = {setPassword} handleLogin = {handleLogin}
         handleSignUp = {handleSignUp} hasAccount = { hasAccount} setHasAccount = {setHasAccount} 
         emailError = {emailError} passwordError = {passwordError}
         />
-    
+      )}
     </div>
   );
 }
