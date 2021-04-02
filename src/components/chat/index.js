@@ -30,3 +30,16 @@ io.on("connection", (socket) => {
 http.listen(3000, () => {
   console.log("listening on port 3000");
 });
+
+// User name setup
+const name = prompt('What is your name?')
+appendMessage('You joined')
+socket.emit('new-user', name)
+
+socket.on('user-connected', name => {
+    appendMessage(`${name} connected`)
+  })
+
+  socket.on('user-disconnected', name => {
+    appendMessage(`${name} disconnected`)
+  })
