@@ -43,6 +43,7 @@ socket.on('user-connected', name => {
   socket.on('user-disconnected', name => {
     appendMessage(`${name} disconnected`)
   })
+//message logic
 
   function appendMessage(message) {
     const messageElement = document.createElement('div')
@@ -57,3 +58,8 @@ socket.on('user-connected', name => {
     socket.emit('send-chat-message', message)
     messageInput.value = ''
   })
+
+  // Chat logic above
+  //next steps for tomorrow:
+ // React component needs integrating into the chat logic.
+ //Material ui research needed to find appropriate container.
