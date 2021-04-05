@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import fire from '../Firebase/firebase';
 import Login from "../../components/Input/index"
 import Hero from "../../components/Hero/index"
+import Chat from "../../components/chat/index"
 
 function App() {
   const [email, setEmail] = useState('');
@@ -88,7 +89,8 @@ authListener()
   return (
     <div className='App'>
       {user ? (
-        <Hero handleLogOut = {handleLogOut} user = {user}/>
+        <Hero handleLogOut = {handleLogOut} user = {user}/>,
+        <Chat/>
       ):(
         
         <Login email = {email} setEmail = {setEmail} password = {password} setPassword = {setPassword} handleLogin = {handleLogin}

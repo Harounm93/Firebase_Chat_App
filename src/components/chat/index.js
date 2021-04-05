@@ -1,63 +1,59 @@
-const express = require("express");
-const app = express();
-const http = require("http").Server(app);
-const io = require("socket.io")(http, {
-  pingTimeout: 60000,
-});
-const path = require("path");
+import React, { useEffect, useRef, useState } from "react"
+import io from "socket.io-client"
+import TextField from "@material-ui/core/TextField"
 
-//Serve public directory
-app.use(express.static(path.join(__dirname, "public")));
+function Chat() {
+	const [ state, setState ] = useState({ message: "", name: "" })
+	const [ chat, setChat ] = useState([])
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, +"public/index.html"));
-});
+  const socketRef = useRef()
 
-io.on("connection", (socket) => {
-  console.log("a user connected");
+	useEffect(
+		() => {
+			socketRef.current = io.connect("http://localhost:4000")
+			socketRef.current.on("message", ({ name, message }) => {
+				setChat([ ...chat, { name, message } ])
+			})
+			return () => socketRef.current.disconnect()
+		},
+		[ chat ]
+	)
+  const onTextChange = (e) => {
+		setState({ ...state, [e.target.name]: e.target.value })
+	}
 
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
+  const onMessageSubmit = (e) => {
+		const { name, message } = state
+		socketRef.current.emit("message", { name, message })
+		e.preventDefault()
+		setState({ message: "", name })
+	}
+  return (
+    <div className="card">
+    <form onSubmit={onMessageSubmit}>
+				<h1>Messenger</h1>
+				<div className="name-field">
+					<TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
+				</div>
+				<div>
+					<TextField
+						name="message"
+						onChange={(e) => onTextChange(e)}
+						value={state.message}
+						id="outlined-multiline-static"
+						variant="outlined"
+						label="Message"
+					/>
+				</div>
+				<button>Send Message</button>
+			</form>
 
-  socket.on("message", (message) => {
-    console.log("message: " + message.content);
-    //Broadcast the message to everyone
-    io.emit("message", message);
-  });
-});
 
-http.listen(3000, () => {
-  console.log("listening on port 3000");
-});
+    </div>
+  )
+}
 
-// User name setup
-const name = prompt('What is your name?')
-appendMessage('You joined')
-socket.emit('new-user', name)
-
-socket.on('user-connected', name => {
-    appendMessage(`${name} connected`)
-  })
-
-  socket.on('user-disconnected', name => {
-    appendMessage(`${name} disconnected`)
-  })
-//message logic
-
-  function appendMessage(message) {
-    const messageElement = document.createElement('div')
-    messageElement.innerText = message
-    messageContainer.append(messageElement)
-  }
-
-  messageForm.addEventListener('submit', e => {
-    e.preventDefault()
-    const message = messageInput.value
-    appendMessage(`You: ${message}`)
-    socket.emit('send-chat-message', message)
-    messageInput.value = ''
-  })
+export default Chat
 
   // Chat logic above
   //next steps for tomorrow:
