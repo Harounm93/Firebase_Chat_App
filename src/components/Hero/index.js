@@ -1,5 +1,5 @@
 import react from "react"
-import Chat from "../../components/chat/index"
+
 
 const Hero = (props) => {
 const {handleLogOut, user} = props

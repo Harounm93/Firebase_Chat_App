@@ -85,7 +85,7 @@ function App() {
   return (
     <div className='App'>
       {user ? (
-        ((<Hero handleLogOut={handleLogOut} user={user}/>)), (<Chat/>)
+        ((<Hero handleLogOut={handleLogOut} user={user}/>)), (<Chat handleLogOut={handleLogOut}/>)
       ) : (
         <Login
           email={email}

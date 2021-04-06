@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
 import TextField from '@material-ui/core/TextField';
-import "../App/App.css"
+import "../chat/chat.css"
+import Button from '@material-ui/core/Button';
 
-function Chat() {
-  const [state, setState] = useState({ message: '', name: '' });
+function Chat(props) {
+  const {handleLogOut} = props
+ const [state, setState] = useState({ message: '', name: '' });
   const [chat, setChat] = useState([]);
 
   const socketRef = useRef();
@@ -58,12 +60,16 @@ function Chat() {
             label='Message'
           />
         </div>
-        <button>Send Message</button>
+        <Button variant="contained" color="primary">
+        send message
+      </Button>
+      <Button  variant="contained" color="secondary"  onClick = {handleLogOut}>log Out</Button>
       </form>
       <div className="render-chat">
 				<h1>Chat Log</h1>
 				{renderChat()}
 			</div>
+      
     </div>
   );
 }
