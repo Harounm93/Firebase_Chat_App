@@ -60,10 +60,10 @@ function Chat(props) {
             label='Message'
           />
         </div>
-        <Button variant="contained" color="primary">
+        <Button  className="chat-btn" variant="contained" color="primary">
         send message
       </Button>
-      <Button  variant="contained" color="secondary"  onClick = {handleLogOut}>log Out</Button>
+      <Button  className="chat-btn"  variant="contained" color="secondary"  onClick = {handleLogOut}>log Out</Button>
       </form>
       <div className="render-chat">
 				<h1>Chat Log</h1>
