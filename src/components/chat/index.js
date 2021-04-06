@@ -66,7 +66,7 @@ function Chat(props) {
       <Button  className="chat-btn"  variant="contained" color="secondary"  onClick = {handleLogOut}>log Out</Button>
       </form>
       <div className="render-chat">
-				<h1>Chat Log</h1>
+				<h1>Chat View</h1>
 				{renderChat()}
 			</div>
       
