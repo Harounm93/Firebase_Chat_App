@@ -29,9 +29,10 @@
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0px 3px 24px -8px rgba(0, 0, 0, 0.75);
+    color:darkblue;
   }
   
-  h3 {
+  .text {
     color: #2f72da;
   }
   

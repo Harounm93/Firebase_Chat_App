@@ -30,10 +30,11 @@ function Chat(props) {
   };
 
   const renderChat = () => {
-		return chat.map(({ name, message }, index) => (
+		return chat.map(({ name, message }, index) => ( 
 			<div key={index}>
-				<h3>
+				<h3  className='text'>
 					{name}: <span>{message}</span>
+          {console.log(` This is the message: ${message}`)}
 				</h3>
 			</div>
 		))
@@ -60,7 +61,7 @@ function Chat(props) {
             label='Message'
           />
         </div>
-        <Button  className="chat-btn" variant="contained" color="primary">
+        <Button  className="chat-btn" variant="contained" color="primary" >
         send message
       </Button>
       <Button  className="chat-btn"  variant="contained" color="secondary"  onClick = {handleLogOut}>log Out</Button>
