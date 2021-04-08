@@ -73,6 +73,7 @@ function App() {
       if (user) {
         clearInputs();
         setUser(user);
+        console.log(user)
       } else {
         setUser('');
       }
@@ -85,7 +86,8 @@ function App() {
   return (
     <div className='App'>
       {user ? (
-        ((<Hero handleLogOut={handleLogOut} user={user}/>)), (<Chat handleLogOut={handleLogOut}/>)
+        ((<Hero handleLogOut={handleLogOut} user={user} />),
+        (<Chat handleLogOut={handleLogOut} />))
       ) : (
         <Login
           email={email}

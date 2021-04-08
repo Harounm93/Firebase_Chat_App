@@ -11,6 +11,7 @@ function Chat(props) {
 
   const socketRef = useRef();
 
+  
   useEffect(() => {
     socketRef.current = io.connect('http://localhost:4000');
     socketRef.current.on('message', ({ name, message }) => {
@@ -61,7 +62,7 @@ function Chat(props) {
             label='Message'
           />
         </div>
-        <Button  className="chat-btn" variant="contained" color="primary" >
+        <Button  className="chat-btn" variant="contained" color="primary" oncli>
         send message
       </Button>
       <Button  className="chat-btn"  variant="contained" color="secondary"  onClick = {handleLogOut}>log Out</Button>
